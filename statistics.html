@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="matchApp">
+<head>
+  <title>Teamwise View</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Acme|Germania+One" rel="stylesheet">
+  <script>
+
+</script>
+
+  <link rel="stylesheet" type="text/css" href="football.css">
+  <style>
+  </style>
+</head>
+<body ng-controller="mainController as mainCtrl">
+<nav class="navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">FootballFever.com</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class=""><a href="index.html">Home</a></li>
+      <li><a href="singleMatch.html">Single Match Stats</a></li>
+      <li><a href="statistics.html">Teamwise Stats</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="container" >
+<h1>English Premier League</h1><br><br>
+  <select id="sel" class="form-control" ng-model="check">
+    <option value="" disabled>Select Year</option>
+    <option value=1 id="1st">2015-16</option>
+    <option value=2 id="2nd">2016-17</option>
+  </select><br><br>
+
+  <div ng-if="check == 1">
+    <span ng-init="mainCtrl.loadAllDetails1()"></span>
+  </div>
+  <div ng-if="check == 2">
+    <span ng-init="mainCtrl.loadAllDetails2()"></span>
+  </div>
+
+ <select id="select" class="form-control" onchange="fun(value)">
+    <option value="" disabled>Select Team</option>
+    <option value="Arsenal">Arsenal</option>
+    <option value="Aston Villa">Aston Villa</option>
+    <option value="Bournemouth">Bournemouth</option>
+    <option value="Chelsea">Chelsea</option>
+    <option value="Crystal Palace">Crystal Palace</option>
+    <option value="Everton">Everton</option>
+    <option value="Leicester City">Leicester City</option>
+    <option value="Liverpool">Liverpool</option>
+    <option value="Manchester City">Manchester City</option>
+    <option value="Manchester United">Manchester United</option>
+    <option value="Newcastle United">Newcastle United</option>
+    <option value="Norwich">Norwich</option>
+    <option value="Southampton">Southampton</option>
+    <option value="Stoke City">Stoke City</option>
+    <option value="Sunderland">Sunderland</option>
+    <option value="Swansea">Swansea</option>
+    <option value="Tottenham Hotspur">Tottenham Hotspur</option>
+    <option value="Watford">Watford</option>
+    <option value="West Bromwich Albion">West Bromwich Albion</option>
+    <option value="West Ham United">West Ham United</option>
+  </select><br><br>
+
+  <div id="st">
+    Total Matches : <span id="mat"> {{mainCtrl.totalMatches}}</span><hr>
+    Total Wins : <span id="wins"> {{mainCtrl.wins}}</span><hr>
+    Total Loss : <span id="loss"> {{mainCtrl.loss}}</span><hr>
+    Total Draws : <span id="draw"> {{mainCtrl.draw}}</span><hr>
+    Total Score : <span id="goals"> {{mainCtrl.goals}}</span>
+  </div>
+
+
+
+
+</div>
+<br><br>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<!-- <script src="app.js"></script> -->
+<script src="app.js"></script>
+<script>
+
+var fun = function(value){
+  if($("#sel").val() == 1){
+    fun1(value);
+  }
+  else if ($("#sel").val() == 2) {
+    fun2(value);
+  }
+}
+
+</script>
+
+</body>
+</html>

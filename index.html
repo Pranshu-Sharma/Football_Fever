@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="matchApp">
+<head>
+  <title>FootballFever</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Acme|Germania+One" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="football.css">
+  <style>
+  </style>
+</head>
+<body ng-controller="mainController as mainCtrl" >
+<nav class="navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">FootballFever.com</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class=""><a href="#">Home</a></li>
+      <li><a href="singleMatch.html">Single Match Stats</a></li>
+      <li><a href="statistics.html">Teamwise Stats</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+<div class="container" >
+  <h1>English Premier League</h1><br><br>
+  <select id="sel" class="form-control" ng-model="check">
+    <option value="" disabled>Select Year</option>
+    <option value=1 id="1st">2015-16</option>
+    <option value=2 id="2nd">2016-17</option>
+  </select><br><br>
+
+
+  <div class="row">
+    <div class="col-md-5 mb-3">
+      <input type="text" class="form-control" id="t" placeholder="Search by Team" ng-model="search">
+      <label for="t" class="white">Eg. Liverpool</label>
+    </div>
+    <div class="col-md-3 mb-3">
+      <input type="text" class="form-control" id="s" placeholder="Search by Score" ng-model="search.score1">
+      <label for="s" class="white">Eg. 3</label>
+    </div>
+    <div class="col-md-4 mb-3">
+      <input type="text" class="form-control" id="d" placeholder="Search by Date : YYYY-MM-DD" ng-model="search.date">
+      <label for="d" class="white">Eg. 2016-05-07</label>
+    </div>
+  </div>
+ <br><br>
+
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Team1</th>
+        <th>Team2</th>
+        <th>Date</th>
+        <th>Team1 Score</th>
+        <th>Team2 Score</th>
+
+      </tr>
+    </thead>
+
+
+    <div ng-if="check == 1">
+      <span ng-init="mainCtrl.loadAllDetails1()"></span>
+    </div>
+    <div ng-if="check == 2">
+      <span ng-init="mainCtrl.loadAllDetails2()"></span>
+    </div>
+
+      <tbody ng-repeat="game in mainCtrl.games.rounds">
+        <tr ng-repeat="x in game.matches | filter:search">
+          <td></td>
+          <td>{{x.team1.name}}</td>
+          <td>{{x.team2.name}}</td>
+          <td>{{x.date}}</td>
+          <td>{{x.score1}}</td>
+          <td>{{x.score2}}</td>
+        </tr>
+      </tbody>
+
+  </table>
+</div>
+<script>
+
+</script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<!-- <script src="app.js"></script> -->
+<script src="app.js"></script>
+</body>
+</html>

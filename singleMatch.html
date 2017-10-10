@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="matchApp">
+<head>
+  <title>Single Match View</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Acme|Germania+One" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="football.css">
+  <style>
+  </style>
+</head>
+<body ng-controller="mainController as mainCtrl" >
+<nav class="navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">FootballFever.com</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class=""><a href="index.html">Home</a></li>
+      <li><a href="singleMatch.html">Single Match Stats</a></li>
+      <li><a href="statistics.html">Teamwise Stats</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+<div class="container" >
+
+<h1>English Premier League</h1><br><br>
+  <select id="sel" class="form-control" ng-model="check">
+    <option value="" disabled>Select Year</option>
+    <option value=1 id="1st">2015-16</option>
+    <option value=2 id="2nd">2016-17</option>
+  </select><br><br>
+
+   <div class="row">
+     <div class="col-md-6 mb-3">
+       <select id="" class="form-control" ng-model="search.team1.name">
+          <option value="" disabled>Select 1st Team</option>
+          <option value="Arsenal">Arsenal</option>
+          <option value="Aston Villa">Aston Villa</option>
+          <option value="Bournemouth">Bournemouth</option>
+          <option value="Chelsea">Chelsea</option>
+          <option value="Crystal Palace">Crystal Palace</option>
+          <option value="Everton">Everton</option>
+          <option value="Leicester City">Leicester City</option>
+          <option value="Liverpool">Liverpool</option>
+          <option value="Manchester City">Manchester City</option>
+          <option value="Manchester United">Manchester United</option>
+          <option value="Newcastle United">Newcastle United</option>
+          <option value="Norwich">Norwich</option>
+          <option value="Southampton">Southampton</option>
+          <option value="Stoke City">Stoke City</option>
+          <option value="Sunderland">Sunderland</option>
+          <option value="Swansea">Swansea</option>
+          <option value="Tottenham Hotspur">Tottenham Hotspur</option>
+          <option value="Watford">Watford</option>
+          <option value="West Bromwich Albion">West Bromwich Albion</option>
+          <option value="West Ham United">West Ham United</option>
+        </select>
+     </div>
+     <div class="col-md-6 mb-3">
+       <select id="" class="form-control" ng-model="search.team2.name">
+          <option value="" disabled>Select 2nd Team</option>
+          <option value="Arsenal">Arsenal</option>
+          <option value="Aston Villa">Aston Villa</option>
+          <option value="Bournemouth">Bournemouth</option>
+          <option value="Chelsea">Chelsea</option>
+          <option value="Crystal Palace">Crystal Palace</option>
+          <option value="Everton">Everton</option>
+          <option value="Leicester City">Leicester City</option>
+          <option value="Liverpool">Liverpool</option>
+          <option value="Manchester City">Manchester City</option>
+          <option value="Manchester United">Manchester United</option>
+          <option value="Newcastle United">Newcastle United</option>
+          <option value="Norwich">Norwich</option>
+          <option value="Southampton">Southampton</option>
+          <option value="Stoke City">Stoke City</option>
+          <option value="Sunderland">Sunderland</option>
+          <option value="Swansea">Swansea</option>
+          <option value="Tottenham Hotspur">Tottenham Hotspur</option>
+          <option value="Watford">Watford</option>
+          <option value="West Bromwich Albion">West Bromwich Albion</option>
+          <option value="West Ham United">West Ham United</option>
+        </select>
+     </div>
+   </div>
+   <br><br>
+
+
+    <div ng-if="search.team1.name">
+      <div ng-if="search.team2.name">
+        <div ng-if="check == 1">
+          <span ng-init="mainCtrl.loadAllDetails1()"></span>
+        </div>
+      </div>
+    </div>
+
+    <div ng-if="search.team1.name">
+      <div ng-if="search.team2.name">
+        <div ng-if="check == 2">
+          <span ng-init="mainCtrl.loadAllDetails2()"></span>
+        </div>
+      </div>
+    </div>
+
+
+
+  <div ng-repeat="game in mainCtrl.games.rounds" >
+    <div ng-repeat="x in game.matches | filter:search" class="single">
+      <p id="head">{{x.team1.name}}  VS  {{x.team2.name}}</p>
+      <p>Match Date : {{x.date | date:"MMM d, yyyy"}}</p>
+      <p>{{"Goals : "+x.score1}}     |    {{"Goals : "+x.score2}}</p>
+      <p><div ng-if="x.score1>x.score2">
+        {{x.team1.name+" Won the Match !"}}
+      </div>
+      <div ng-if="x.score1<x.score2">
+        {{x.team2.name+" Won the Match !"}}
+      </div>
+      <div ng-if="x.score1==x.score2">
+        {{"Match Draw !"}}
+      </div></p>
+    </div>
+  </div>
+
+
+</div>
+<script>
+
+</script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<!-- <script src="app.js"></script> -->
+<script src="app.js"></script>
+</body>
+</html>
